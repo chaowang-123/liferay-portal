@@ -195,3 +195,7 @@
 /working.dir.properties
 /WEB-INF
 _sass_cache_*.css
+/tools/
+/portal-web/
+/modules/
+/portal-kernel/
