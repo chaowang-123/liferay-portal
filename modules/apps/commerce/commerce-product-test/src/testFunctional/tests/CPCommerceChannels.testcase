@@ -523,8 +523,8 @@ definition {
 		SelectFrame.selectFrameNoLoading(locator1 = "IFrame#MODAL_BODY");
 
 		Click(
-			locator1 = "Card#CARD_TITLE",
-			key_card = "Login");
+			key_card = "Login",
+			locator1 = "Card#CARD_TITLE");
 
 		SelectFrameTop();
 
@@ -577,8 +577,8 @@ definition {
 		SelectFrame.selectFrameNoLoading(locator1 = "IFrame#MODAL_BODY");
 
 		Click(
-			locator1 = "Card#CARD_TITLE",
-			key_card = "Login");
+			key_card = "Login",
+			locator1 = "Card#CARD_TITLE");
 
 		SelectFrameTop();
 
