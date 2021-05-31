@@ -170,8 +170,8 @@ definition {
 		FormsAdminNavigator.gotoPublishedForm();
 
 		FormFields.viewDateValue(
-			fieldName = "Date",
 			fieldLabel = "Date",
+			fieldName = "Date",
 			fieldValue = "01/01/2021");
 
 		FormPortlet.submitSuccessfully();
