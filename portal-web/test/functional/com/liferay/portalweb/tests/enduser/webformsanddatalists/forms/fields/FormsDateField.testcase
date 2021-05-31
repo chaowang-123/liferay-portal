@@ -171,7 +171,7 @@ definition {
 
 		FormFields.viewDateValue(
 			fieldName = "Date",
-			fieldLabel= "Date",
+			fieldLabel = "Date",
 			fieldValue = "01/01/2021");
 
 		FormPortlet.submitSuccessfully();
