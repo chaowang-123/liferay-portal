@@ -127,8 +127,8 @@ definition {
 	@description = "This is a use case for LPS-83273. View forms entry with XSS"
 	@priority = "5"
 	test ViewFormsWithXSS {
-		var formName =   '''<script>alert(111)</script>''';
 		var formDescription =  '''<script>alert(222)</script>''';
+		var formName =  '''<script>alert(111)</script>''';
 
 		task ("Add a form") {
 			FormsAdmin.addForm();
