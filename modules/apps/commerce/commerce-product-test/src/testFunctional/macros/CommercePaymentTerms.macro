@@ -28,16 +28,19 @@ definition {
 		}
 	}
 
-	macro deleteTermsAndCondition {
-		CommerceNavigator.searchEntry(entryName = "${termsAndConditionName}");
-
+	macro gotoEntryMenuItem {
 		Click(
 			key_value = "${termsAndConditionName}",
 			locator1 = "CommerceEntry#BODY_VERTICAL_ELLIPSIS");
 
-		MenuItem.clickNoError(menuItem = "Delete");
+		MenuItem.clickNoError(menuItem = "${menuItem}");
+	}
 
-		Alert.viewSuccessMessage();
+	macro viewDeleteTermsAndConditionEntry {
+		AssertElementNotPresent(
+			key_termsAndConditionName = "${termsAndConditionName}",
+			locator1 = "CommercePaymentTerms#ORDER_DETAILS_TERMS_AND_CONDITIONS_NAME",
+			value1 = "${termsAndConditionName}");
 	}
 
 	macro viewTermsAndConditionEntry {
