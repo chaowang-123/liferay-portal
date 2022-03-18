@@ -112,6 +112,27 @@
 	<td></td>
 	<td></td>
 </tr>
+<!--DEFAULT_ACCOUNT_TERMS_AND_CONDITIONS-->
+<tr>
+	<td>DEFAULT_ACCOUNT_TERMS_AND_CONDITIONS_HEADING</td>
+	<td>//div[contains(@class,'section')]//span[normalize-space(text())='Default Account Terms and Conditions']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>DEFAULT_ACCOUNT_TERMS_AND_CONDITIONS__SELECT_DELIVERY_RADIO</td>
+	<td>//input[contains(@name,'selectCommerceTermEntry')]//following-sibling::span/span[normalize-space()='${key_deliveryName}']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>DEFAULT_ACCOUNT_TERMS_AND_CONDITIONS_SET_DEFAULT_DELIVERY</td>
+	<td>//a[@data-type='delivery-terms']//span[normalize-space(text())='Set Default Delivery Commerce Term Entry']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>DEFAULT_ACCOUNT_TERMS_AND_CONDITIONS_USE_PRIORITY_SETTINGS</td>
+	<td>//div[contains(@id,'defaultCommerceTermEntries')]//div[contains(@class,'sheet-text') and contains(.,'${key_termEntry}')]/..//span[normalize-space(text())='${termText}']</td>
+	<td></td>
+</tr>
 <!--USER-->
 <tr>
 	<td>USER_SELECT_BUTTON</td>

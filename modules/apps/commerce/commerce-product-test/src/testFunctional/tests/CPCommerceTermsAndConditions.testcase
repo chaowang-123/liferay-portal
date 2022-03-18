@@ -45,14 +45,83 @@ definition {
 
 	}
 
-	@description = "[Please Update]"
-	@ignore = "Test Stub"
+	@description = "This is a test for COMMERCE-8333. Deleting an account default delivery term will revert to Use Priority Settings"
 	@priority = "4"
 	test RemoveADeliveryTermLinkedToAnAccountAsDefaultOne {
 		property portal.acceptance = "false";
 
-		// TODO COMMERCE-8333 RemoveADeliveryTermLinkedToAnAccountAsDefaultOne pending implementation
+		task ("Created two delivery terms entries with different priority into Terms and Conditions") {
+			CommerceNavigator.gotoPortlet(
+				category = "Order Management",
+				portlet = "Terms and Conditions");
 
+			CommercePaymentTerms.addTermsAndCondition(
+				active = "true",
+				termsAndConditionName = "Test Terms and Condition 1",
+				termsAndConditionType = "Delivery Terms",
+				valuePosition = "");
+
+			Click(locator1 = "Icon#BACK");
+
+			CommercePaymentTerms.addTermsAndCondition(
+				active = "true",
+				termsAndConditionName = "Test Terms and Condition 2",
+				termsAndConditionType = "Delivery Terms",
+				valuePosition = "0.1");
+		}
+
+		task ("Created an account and set default delivery terms") {
+			JSONAccountEntry.addAccountEntry(
+				accountEntryName = "Account Name",
+				accountEntryType = "Business");
+
+			Accounts.openAccountsAdmin();
+
+			LexiconEntry.gotoEntry(rowEntry = "Account Name");
+
+			Accounts.setDefaultDeliveryTermsAndConditions(deliveryName = "test-terms-and-condition-1");
+		}
+
+		task ("Delete the delivery term that was linked to an Account as a default") {
+			CommerceNavigator.gotoPortlet(
+				category = "Order Management",
+				portlet = "Terms and Conditions");
+
+			CommercePaymentTerms.deleteTermsAndCondition(termsAndConditionName = "Test Terms and Condition 1");
+
+			AssertElementNotPresent(
+				key_termsAndConditionName = "${termsAndConditionName}",
+				locator1 = "CommercePaymentTerms#ORDER_DETAILS_TERMS_AND_CONDITIONS_NAME",
+				value1 = "Test Terms and Condition 1");
+
+			AssertElementNotPresent(
+				key_termsAndConditionType = "${termsAndConditionType}",
+				locator1 = "CommercePaymentTerms#ORDER_DETAILS_TERMS_AND_CONDITIONS_TYPE",
+				value1 = "Delivery Terms");
+
+			AssertElementNotPresent(
+				key_valuePosition = "${valuePosition}",
+				locator1 = "CommercePaymentTerms#ORDER_DETAILS_TERMS_AND_CONDITIONS_PRIORITY",
+				value1 = "");
+
+			AssertElementNotPresent(
+				key_termsAndConditionActiveStatus = "${termsAndConditionActiveStatus}",
+				locator1 = "CommercePaymentTerms#ORDER_DETAILS_TERMS_AND_CONDITIONS_ACTIVE_STATUS",
+				value1 = "Yes");
+		}
+
+		task ("Go into the Account edit page, assert the default delivery is changed to Use Priority Settings") {
+			Accounts.openAccountsAdmin();
+
+			Accounts.goToEntryMenuItem(
+ 				menuItem = "Edit",
+ 				rowEntry = "Account Name");
+
+			Accounts.viewDefaultTermsAndConditionsChangedToUsePropritySettings(
+				termEntry = "Delivery",
+				termText = "Use Priority Settings",
+				text = "Use Priority Settings");
+		}
 	}
 
 	@description = "[Please Update]"

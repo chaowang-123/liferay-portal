@@ -1201,6 +1201,30 @@ definition {
 		Alert.viewSuccessMessage();
 	}
 
+	macro setDefaultDeliveryTermsAndConditions {
+		AssertElementPresent(locator1 = "Account#DEFAULT_ACCOUNT_TERMS_AND_CONDITIONS_HEADING");
+
+		AssertClick(
+			locator1 = "Account#DEFAULT_ACCOUNT_TERMS_AND_CONDITIONS_SET_DEFAULT_DELIVERY",
+			value1 = "Set Default Delivery Commerce Term Entry");
+
+		Pause(locator1 = "3000");
+
+		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+
+		Click(
+			key_deliveryName = "${deliveryName}",
+			locator1 = "Account#DEFAULT_ACCOUNT_TERMS_AND_CONDITIONS__SELECT_DELIVERY_RADIO");
+
+		SelectFrameTop();
+
+		AssertClick(
+			locator1 = "Account#DEFAULT_ACCOUNT_ADDRESSES_SAVE_BUTTON",
+			value1 = "Save");
+
+		Alert.viewSuccessMessage();
+	}
+
 	macro setDefaultShippingAddress {
 		AssertElementPresent(locator1 = "Account#DEFAULT_ACCOUNT_ADDRESSES_HEADING");
 
@@ -1374,6 +1398,14 @@ definition {
 				locator1 = "Account#DEFAULT_ACCOUNT_ADDRESSES_DEFAULT_BILLING_ADDRESS",
 				value1 = "${phoneNumber}");
 		}
+	}
+
+	macro viewDefaultTermsAndConditionsChangedToUsePropritySettings {
+		AssertTextEquals.assertPartialText(
+			key_termEntry = "${termEntry}",
+			key_termText = "${termText}",
+			locator1 = "Account#DEFAULT_ACCOUNT_TERMS_AND_CONDITIONS_USE_PRIORITY_SETTINGS",
+			value1 = "${text}");
 	}
 
 	macro viewDefaultShippingAddress {
