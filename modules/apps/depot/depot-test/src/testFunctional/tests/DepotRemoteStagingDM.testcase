@@ -2153,9 +2153,7 @@ definition {
 	test CanNavigateToRemoteLiveViaToolbar {
 		property portal.acceptance = "chao.wang";
 
-		DepotNavigator.openDepotDocumentsAndMediaAdmin(depotName = "Test Depot Name");
-
-		ProductMenu.gotoLiveSite();
+		ProductMenu.gotoLiveSite(site = "Test Depot Name");
 
 		var portalURL = PropsUtil.get("portal.url");
 
