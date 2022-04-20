@@ -2153,6 +2153,10 @@ definition {
 	test CanNavigateToRemoteLiveViaToolbar {
 		property portal.acceptance = "chao.wang";
 
+		Navigator.gotoSitePage(
+			pageName = "Test Page",
+			siteName = "Site Name");
+
 		ProductMenu.gotoLiveSite(site = "Site Name");
 
 		var portalURL = PropsUtil.get("portal.url");
