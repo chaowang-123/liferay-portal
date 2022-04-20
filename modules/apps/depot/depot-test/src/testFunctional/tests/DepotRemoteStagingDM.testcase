@@ -2163,7 +2163,7 @@ definition {
 
 		var portalURL = PropsUtil.get("portal.url");
 
-		AssertLocation(value1 = "${portalURL}/group/remote-site");
+		AssertLocation.assertPartialLocation(value1 = "${portalURL}/group/remote-site");
 	}
 
 	@description = "This ensures that a document pending review cannot be searched for in a staged site when enabling remote staging."
