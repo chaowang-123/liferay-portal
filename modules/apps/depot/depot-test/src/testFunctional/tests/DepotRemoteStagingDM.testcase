@@ -2157,7 +2157,9 @@ definition {
 			pageName = "Test Page",
 			siteName = "Site Name");
 
-		ProductMenu.gotoLiveSite(site = "Site Name");
+		ProductMenu.gotoLiveSite(
+			site = "Site Name",
+			remoteStaging = "true");
 
 		var portalURL = PropsUtil.get("portal.url");
 
