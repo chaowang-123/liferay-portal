@@ -2153,11 +2153,11 @@ definition {
 	test CanNavigateToRemoteLiveViaToolbar {
 		property portal.acceptance = "chao.wang";
 
-		ProductMenu.gotoLiveSite(site = "Test Depot Name");
+		ProductMenu.gotoLiveSite(site = "Site Name");
 
 		var portalURL = PropsUtil.get("portal.url");
 
-		AssertLocation(value1 = "${portalURL}/web/site-name");
+		AssertLocation(value1 = "${portalURL}/group/remote-site");
 	}
 
 	@description = "This ensures that a document pending review cannot be searched for in a staged site when enabling remote staging."
