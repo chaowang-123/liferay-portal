@@ -123,13 +123,6 @@ definition {
 		SelectFrame(value1 = "relative=top");
 	}
 
-	macro viewEntry {
-		AssertTextEquals(
-			key_breadcrumbName = "${breadcrumbName}",
-			locator1 = "BreadcrumbPortlet#BREADCRUMB_SPECIFIC_ENTRY",
-			value1 = "${breadcrumbName}");
-	}
-
 	macro viewDisplayTemplatePreview {
 		SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
@@ -138,6 +131,13 @@ definition {
 			value1 = "${displayStyle}");
 
 		SelectFrame(value1 = "relative=top");
+	}
+
+	macro viewEntry {
+		AssertTextEquals(
+			key_breadcrumbName = "${breadcrumbName}",
+			locator1 = "BreadcrumbPortlet#BREADCRUMB_SPECIFIC_ENTRY",
+			value1 = "${breadcrumbName}");
 	}
 
 	macro viewPG {
