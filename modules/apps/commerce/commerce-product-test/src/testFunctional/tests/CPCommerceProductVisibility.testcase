@@ -8,6 +8,7 @@ definition {
 
 	setUp {
 		CommerceConfiguration.commerceSetUp(storeFront = "true");
+
 	}
 
 	tearDown {
@@ -27,6 +28,7 @@ definition {
 	@description = "This is a test for COMMERCE-6086. AddAChannelFilter"
 	@priority = "3"
 	test AddAChannelFilter {
+		property portal.acceptance = "chao.wang";
 		property portal.acceptance = "false";
 
 		// TODO Review
@@ -51,32 +53,37 @@ definition {
 			productName = "Simple T-Shirt",
 			productType = "Simple");
 
-		CommerceEntry.gotoMenuTab(menuTab = "Visibility");
+		CommerceDiagram.setVisibility(
+			checkboxName = "Test Channel",
+			name = "Channels");
 
-		Click(
-			key_name = "Channels",
-			locator1 = "ToggleSwitch#ENABLE_SPECIFIC_TOGGLE_SWITCH");
+		// CommerceEntry.gotoMenuTab(menuTab = "Visibility");
 
-		Click(locator1 = "Button#PLUS");
+		// Click(
+		// 	key_name = "Channels",
+		// 	locator1 = "ToggleSwitch#ENABLE_SPECIFIC_TOGGLE_SWITCH");
 
-		SelectFrameTop();
+		// Click(locator1 = "Button#PLUS");
 
-		SelectFrame.selectFrameNoLoading(locator1 = "IFrame#MODAL_BODY");
+		// SelectFrameTop();
 
-		Check(
-			key_checkboxName = "Test Channel",
-			locator1 = "Checkbox#ENABLE_CHECKBOX");
+		// SelectFrame.selectFrameNoLoading(locator1 = "IFrame#MODAL_BODY");
 
-		SelectFrameTop();
+		// Check(
+		// 	key_checkboxName = "Test Channel",
+		// 	locator1 = "Checkbox#ENABLE_CHECKBOX");
 
-		Button.click(button = "Add");
+		// SelectFrameTop();
 
-		Alert.viewSuccessMessage();
+		// Button.click(button = "Add");
+
+		// Alert.viewSuccessMessage();
 	}
 
 	@description = "This is a test for COMMERCE-6089. RemoveAccountGroupFilter"
 	@priority = "3"
 	test RemoveAccountGroupFilter {
+		property portal.acceptance = "chao.wang";
 		property portal.acceptance = "false";
 		property portal.upstream = "quarantine";
 
@@ -98,30 +105,35 @@ definition {
 			productCatalog = "Master",
 			productName = "Simple T-Shirt",
 			productType = "Simple");
+		
+		CommerceDiagram.setVisibility(
+			checkboxName = "Guest",
+			name = "Account Groups",
+			webContentTitle = "Add Account Group Relation to Simple T-Shirt");
 
-		CommerceEntry.gotoMenuTab(menuTab = "Visibility");
+		// CommerceEntry.gotoMenuTab(menuTab = "Visibility");
 
-		Click(
-			key_name = "Account Groups",
-			locator1 = "ToggleSwitch#ENABLE_SPECIFIC_TOGGLE_SWITCH");
+		// Click(
+		// 	key_name = "Account Groups",
+		// 	locator1 = "ToggleSwitch#ENABLE_SPECIFIC_TOGGLE_SWITCH");
 
-		ClickNoError.clickNoMouseOver(
-			key_webContentTitle = "Add Account Group Relation to Simple T-Shirt",
-			locator1 = "Button#BUTTON_PLUS_PRODUCT_VISIBILITY");
+		// ClickNoError.clickNoMouseOver(
+		// 	key_webContentTitle = "Add Account Group Relation to Simple T-Shirt",
+		// 	locator1 = "Button#BUTTON_PLUS_PRODUCT_VISIBILITY");
 
-		SelectFrame.selectFrameNoLoading(locator1 = "IFrame#MODAL_BODY");
+		// SelectFrame.selectFrameNoLoading(locator1 = "IFrame#MODAL_BODY");
 
-		Check(
-			key_checkboxName = "Guest",
-			locator1 = "Checkbox#ENABLE_CHECKBOX");
+		// Check(
+		// 	key_checkboxName = "Guest",
+		// 	locator1 = "Checkbox#ENABLE_CHECKBOX");
 
-		SelectFrameTop();
+		// SelectFrameTop();
 
-		Button.click(button = "Add");
+		// Button.click(button = "Add");
 
-		SelectFrameTop();
+		// SelectFrameTop();
 
-		AssertElementPresent(locator1 = "Message#SUCCESS");
+		// AssertElementPresent(locator1 = "Message#SUCCESS");
 
 		Button.click(button = "Delete");
 
@@ -137,6 +149,7 @@ definition {
 	@description = "This is a test for COMMERCE-6087. RemoveAChannelFilter"
 	@priority = "3"
 	test RemoveAChannelFilter {
+		property portal.acceptance = "chao.wang";
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "CPCommerceProductVisibility#RemoveAChannelFilter";
 
@@ -148,26 +161,30 @@ definition {
 			productCatalog = "Master",
 			productName = "Simple T-Shirt",
 			productType = "Simple");
+		
+		CommerceDiagram.setVisibility(
+			checkboxName = "Test Channel",
+			name = "Channels");
 
-		CommerceEntry.gotoMenuTab(menuTab = "Visibility");
+		// CommerceEntry.gotoMenuTab(menuTab = "Visibility");
 
-		Click(
-			key_name = "Channels",
-			locator1 = "ToggleSwitch#ENABLE_SPECIFIC_TOGGLE_SWITCH");
+		// Click(
+		// 	key_name = "Channels",
+		// 	locator1 = "ToggleSwitch#ENABLE_SPECIFIC_TOGGLE_SWITCH");
 
-		Click(locator1 = "Button#PLUS");
+		// Click(locator1 = "Button#PLUS");
 
-		SelectFrame.selectFrameNoLoading(locator1 = "IFrame#MODAL_BODY");
+		// SelectFrame.selectFrameNoLoading(locator1 = "IFrame#MODAL_BODY");
 
-		Check(
-			key_checkboxName = "Test Channel",
-			locator1 = "Checkbox#ENABLE_CHECKBOX");
+		// Check(
+		// 	key_checkboxName = "Test Channel",
+		// 	locator1 = "Checkbox#ENABLE_CHECKBOX");
 
-		SelectFrameTop();
+		// SelectFrameTop();
 
-		Button.click(button = "Add");
+		// Button.click(button = "Add");
 
-		Alert.viewSuccessMessage();
+		// Alert.viewSuccessMessage();
 
 		WaitForElementPresent(
 			key_productName = "Test Channel",
