@@ -8,6 +8,7 @@ definition {
 
 	setUp {
 		CommerceConfiguration.commerceSetUp(storeFront = "true");
+
 	}
 
 	tearDown {
@@ -27,7 +28,8 @@ definition {
 	@description = "This is a test for COMMERCE-6086. AddAChannelFilter"
 	@priority = "3"
 	test AddAChannelFilter {
-		property portal.acceptance = "false";
+		property portal.acceptance = "chao.wang";
+
 
 		// TODO Review
 
@@ -51,33 +53,15 @@ definition {
 			productName = "Simple T-Shirt",
 			productType = "Simple");
 
-		CommerceEntry.gotoMenuTab(menuTab = "Visibility");
-
-		Click(
-			key_name = "Channels",
-			locator1 = "ToggleSwitch#ENABLE_SPECIFIC_TOGGLE_SWITCH");
-
-		Click(locator1 = "Button#PLUS");
-
-		SelectFrameTop();
-
-		SelectFrame.selectFrameNoLoading(locator1 = "IFrame#MODAL_BODY");
-
-		Check(
-			key_checkboxName = "Test Channel",
-			locator1 = "Checkbox#ENABLE_CHECKBOX");
-
-		SelectFrameTop();
-
-		Button.click(button = "Add");
-
-		Alert.viewSuccessMessage();
+		CommerceDiagram.setVisibility(
+			checkboxName = "Test Channel",
+			name = "Channels");
 	}
 
 	@description = "This is a test for COMMERCE-6089. RemoveAccountGroupFilter"
 	@priority = "3"
 	test RemoveAccountGroupFilter {
-		property portal.acceptance = "false";
+		property portal.acceptance = "chao.wang";
 		property portal.upstream = "quarantine";
 
 		// TODO Review
@@ -98,30 +82,11 @@ definition {
 			productCatalog = "Master",
 			productName = "Simple T-Shirt",
 			productType = "Simple");
-
-		CommerceEntry.gotoMenuTab(menuTab = "Visibility");
-
-		Click(
-			key_name = "Account Groups",
-			locator1 = "ToggleSwitch#ENABLE_SPECIFIC_TOGGLE_SWITCH");
-
-		ClickNoError.clickNoMouseOver(
-			key_webContentTitle = "Add Account Group Relation to Simple T-Shirt",
-			locator1 = "Button#BUTTON_PLUS_PRODUCT_VISIBILITY");
-
-		SelectFrame.selectFrameNoLoading(locator1 = "IFrame#MODAL_BODY");
-
-		Check(
-			key_checkboxName = "Guest",
-			locator1 = "Checkbox#ENABLE_CHECKBOX");
-
-		SelectFrameTop();
-
-		Button.click(button = "Add");
-
-		SelectFrameTop();
-
-		AssertElementPresent(locator1 = "Message#SUCCESS");
+		
+		CommerceDiagram.setVisibility(
+			checkboxName = "Guest",
+			name = "Account Groups",
+			webContentTitle = "Add Account Group Relation to Simple T-Shirt");
 
 		Button.click(button = "Delete");
 
@@ -137,7 +102,7 @@ definition {
 	@description = "This is a test for COMMERCE-6087. RemoveAChannelFilter"
 	@priority = "3"
 	test RemoveAChannelFilter {
-		property portal.acceptance = "true";
+		property portal.acceptance = "chao.wang";
 		property test.name.skip.portal.instance = "CPCommerceProductVisibility#RemoveAChannelFilter";
 
 		CommerceNavigator.gotoPortlet(
@@ -148,26 +113,10 @@ definition {
 			productCatalog = "Master",
 			productName = "Simple T-Shirt",
 			productType = "Simple");
-
-		CommerceEntry.gotoMenuTab(menuTab = "Visibility");
-
-		Click(
-			key_name = "Channels",
-			locator1 = "ToggleSwitch#ENABLE_SPECIFIC_TOGGLE_SWITCH");
-
-		Click(locator1 = "Button#PLUS");
-
-		SelectFrame.selectFrameNoLoading(locator1 = "IFrame#MODAL_BODY");
-
-		Check(
-			key_checkboxName = "Test Channel",
-			locator1 = "Checkbox#ENABLE_CHECKBOX");
-
-		SelectFrameTop();
-
-		Button.click(button = "Add");
-
-		Alert.viewSuccessMessage();
+		
+		CommerceDiagram.setVisibility(
+			checkboxName = "Test Channel",
+			name = "Channels");
 
 		WaitForElementPresent(
 			key_productName = "Test Channel",
