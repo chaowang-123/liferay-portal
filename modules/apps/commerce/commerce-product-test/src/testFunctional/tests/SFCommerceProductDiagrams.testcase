@@ -12,13 +12,13 @@ definition {
 
 		User.firstLoginPG();
 
-		CommerceAccelerators.initializeNewSiteViaAccelerator(siteName = "Minium");
+		// CommerceAccelerators.initializeNewSiteViaAccelerator(siteName = "Minium");
 
-		ApplicationsMenu.gotoSite(site = "Minium");
+		// ApplicationsMenu.gotoSite(site = "Minium");
 
-		CommerceNavigator.gotoMiniumSidebarItem(menuItem = "Account Management");
+		// CommerceNavigator.gotoMiniumSidebarItem(menuItem = "Account Management");
 
-		CommerceAcceleratorsInitializer.createNewAccountViaFront(accountName = "Commerce Account");
+		// CommerceAcceleratorsInitializer.createNewAccountViaFront(accountName = "Commerce Account");
 	}
 
 	tearDown {
@@ -211,6 +211,20 @@ definition {
 		task ("Then I will be redirected to the Minium Catalog page") {
 			AssertLocation.assertPartialLocation(value1 = "/minium/catalog");
 		}
+	}
+
+	@description = "8971"
+	test VerifyDiagramNameAndShortDescriptionOnTheProductCard {
+		property portal.acceptance = "false";
+
+		CommerceNavigator.gotoMiniumSidebarItem(menuItem = "Catalog");
+
+		CommerceNavigator.searchCatalog(productName = "Diagram");
+
+		AssertCssValue(
+			locator1 = "//p[@title='Test Diagram 1']/following-sibling::p/span",
+			locator2 = "-webkit-line-clamp",
+			value1 = "2");
 	}
 
 	@description = "[Please Update]"
