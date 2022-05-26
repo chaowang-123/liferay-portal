@@ -25,6 +25,7 @@ definition {
 				imageFileName = "${imageFileName}",
 				navTab = "${navTab}");
 		}
+
 		else {
 			ItemSelector.uploadFile(
 				navTab = "${navTab}",
@@ -333,6 +334,14 @@ definition {
 			ItemSelector.addVideoFromURL(
 				navTab = "URL",
 				videoSourceURL = "${embedVideo}");
+		}
+
+		if (isSet(uploadedDmImage)) {
+			ItemSelector.gotoItemSelectorViaAlloyEditor();
+
+			ItemSelector.selectDMImage(
+				imageFileName = "${uploadedDmImage}",
+				navTab = "${navTab}");
 		}
 	}
 
