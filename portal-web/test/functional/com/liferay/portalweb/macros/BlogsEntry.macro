@@ -25,7 +25,6 @@ definition {
 				imageFileName = "${imageFileName}",
 				navTab = "${navTab}");
 		}
-
 		else {
 			ItemSelector.uploadFile(
 				navTab = "${navTab}",
