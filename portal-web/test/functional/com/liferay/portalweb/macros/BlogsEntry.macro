@@ -343,6 +343,18 @@ definition {
 				imageFileName = "${uploadedDmImage}",
 				navTab = "${navTab}");
 		}
+
+		if (isSet(uploadedDmVideo)) {
+			AlloyEditor.clickContentField();
+
+			Click(locator1 = "AlloyEditor#CONTENT_ADD_BUTTON");
+
+			Click(locator1 = "AlloyEditor#CONTENT_ADD_MENUBAR_VIDEO");
+
+			ItemSelector.addVideoFromDM(
+				navTab = "${navTab}",
+				videoShortcutTitle = "${uploadedDmVideo}");
+		}
 	}
 
 	macro editContentViaCardViewPG {
