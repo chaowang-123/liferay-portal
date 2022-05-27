@@ -1509,7 +1509,7 @@ definition {
 
 	macro viewSmallImage {
 		if ("${dmImage}" == "true") {
-			AssertElementPresent(locator1 = "BlogsEntry#SMALL_IMAGE_DM_IMAGE");	
+			AssertElementPresent(locator1 = "BlogsEntry#SMALL_IMAGE_DM_IMAGE");
 		}
 		else {
 			AssertVisible(
