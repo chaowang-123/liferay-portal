@@ -1056,6 +1056,16 @@ definition {
 			}
 		}
 
+		if (isSet(embedImage)) {
+			Click.pauseClickAt(locator1 = "CKEditor#TOOLBAR_IMAGE_BUTTON");
+
+			if ("${navTab}" == "Documents and Media") {
+				ItemSelector.selectDMImage(
+					imageFileName = "${embedImage}",
+					navTab = "${navTab}");
+			}
+		}
+
 		if ("${saveAsDraft}" == "true") {
 			PortletEntry.saveAsDraft();
 
@@ -1989,6 +1999,14 @@ definition {
 			var key_panel = "Display Page";
 
 			AssertElementNotPresent(locator1 = "Panel#PANEL");
+		}
+
+		if (isSet(embedImage)) {
+			SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME_2");
+
+			AssertElementPresent(
+				key_imageTitle = "${embedImage}",
+				locator1 = "WCPreview#PREVIEW_IMAGE");
 		}
 	}
 

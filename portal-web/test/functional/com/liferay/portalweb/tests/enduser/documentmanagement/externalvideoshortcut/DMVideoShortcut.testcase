@@ -562,12 +562,47 @@ definition {
 	}
 
 	@description = "This ensures that an external video in the WC content field can be rendered correctly after moving it to a folder."
-	@ignore = "Test Stub"
 	@priority = "4"
 	test CanViewVideoInWCAfterMovingToFolder {
+		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
-		// TODO LPS-154377 CanViewVideoInWCAfterMovingToFolder pending implementation
+		VideoShortcut.addCP(
+			videoShortcutTitle = "Test YouTube Video",
+			videoURL = "https://youtu.be/HOdbzGCI5ME");
 
+		JSONWebcontent.addWebContent(
+			content = "Web Content Content",
+			groupName = "Guest",
+			title = "Web Content Title");
+
+		WebContentNavigator.openToEditWCInSite(
+			groupName = "Guest",
+			siteURLKey = "guest",
+			webContentTitle = "Web Content Title");
+
+		WebContent.editCP(
+			embedVideo = "true",
+			navTab = "Documents and Media",
+			videoShortcutTitle = "Test YouTube Video",
+			webContentContentEdit = "Web Content Content",
+			webContentTitle = "Web Content Title",
+			webContentTitleEdit = "Web Content Title");
+
+		JSONFolder.addFolder(
+			dmFolderDescription = "DM Folder Description",
+			dmFolderName = "DM Folder Name",
+			groupName = "Guest");
+
+		JSONDocument.moveFileEntryToFolder(
+			dmDocumentTitle = "Test YouTube Video",
+			folderName = "DM Folder Name",
+			groupName = "Guest");
+
+		WebContentNavigator.openWebContentAdmin(siteURLKey = "guest");
+
+		WebContent.viewVideoPreview(
+			service = "youtube",
+			webContentTitle = "Web Content Title");
 	}
 
 	@description = "This ensures that the video shortcut can be viewed with different views in the item selector."
