@@ -51,6 +51,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>BODY_CONTENT_INLINE_IMAGE</td>
+	<td>//img[contains(@src,'${key_imageFileName}')]</td>
+	<td></td>
+</tr>
+<tr>
 	<td>BODY_SOURCE_VALUE</td>
 	<td>//input[contains(@id,'AdminPortlet_content')]</td>
 	<td></td>
