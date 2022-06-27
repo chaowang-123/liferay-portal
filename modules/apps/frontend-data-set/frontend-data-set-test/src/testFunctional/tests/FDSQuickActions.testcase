@@ -95,6 +95,34 @@ definition {
 		}
 	}
 
+	@description = "LPS-155458. Assert can be displayed on one an active row."
+	@priority = "5"
+	test CanDisplayOnOneActiveRow {
+		task ("When hover over 2nd row item") {
+			MouseOver(
+				key_itemName = "Sample2",
+				locator1 = "FrontendDataSet#TABLE_ITEM_ROW");
+		}
+
+		task ("Then quick action menu is displayed on the 2nd row") {
+			AssertElementPresent(
+				key_title = "Sample2",
+				locator1 = "FrontendDataSet#VIEW_ACTION_BUTTON");
+
+			AssertElementPresent(
+				key_title = "Sample2",
+				locator1 = "FrontendDataSet#EDIT_ACTION_BUTTON");
+
+			AssertElementPresent(
+				key_title = "Sample2",
+				locator1 = "FrontendDataSet#DELETE_ACTION_BUTTON");
+		}
+
+		task ("Then quick action menu is not displayed on 1st row") {
+			FDSQuickActions.viewQuickActionMenuNotPresent(title = "Sample1");
+		}
+	}
+
 	@description = "LPS-155466. Assert that test-pencil is appended to browser URL after clicking."
 	@priority = "5"
 	test CanExecuteAnAction {
