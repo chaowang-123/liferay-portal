@@ -1412,6 +1412,8 @@ definition {
 
 		Form.enableAutocompleteConfiguration();
 
+		// Pausing 60 seconds due to LPS-156458
+
 		Pause(locator1 = "60000");
 
 		FormsAdminNavigator.gotoBack();
