@@ -237,11 +237,7 @@ definition {
 	@description = "This is a use case for LPS-58893."
 	@priority = "3"
 	test AddListWithDocumentsAndMediaField {
-		Navigator.openURL();
-
-		ProductMenu.gotoPortlet(
-			category = "Content & Data",
-			portlet = "Dynamic Data Lists");
+		DDLList.openDynamicDataListsAdmin(siteURLKey = "guest");
 
 		DDLDataDefinition.addCP(ddlDataDefinitionName = "Data Definition");
 
@@ -252,11 +248,7 @@ definition {
 
 		DDLDataDefinition.save();
 
-		Navigator.openURL();
-
-		ProductMenu.gotoPortlet(
-			category = "Content & Data",
-			portlet = "Dynamic Data Lists");
+		DDLList.openDynamicDataListsAdmin(siteURLKey = "guest");
 
 		DDLList.addCP(ddlListName = "DDL List");
 
