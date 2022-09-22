@@ -1018,7 +1018,7 @@ definition {
 		}
 
 		if (isSet(click)) {
-			if (("${click}" == "save") && ("${NotRefreshAttribute}" == "true")) {
+			if (("${click}" == "save") && ("${notRefreshAttribute}" == "true")) {
 				Button.clickSave();
 			}
 			else if ("${click}" == "cancel") {
