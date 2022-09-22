@@ -1023,7 +1023,7 @@ definition {
 
 				Refresh();
 			}
-			else if ("${click}" == "save") && ("${NotRefresh}" == "true") {
+			else if (("${click}" == "save") && ("${NotRefreshAttribute}" == "true")) {
 				Button.clickSave();
 			}
 			else ("${click}" == "save") {
