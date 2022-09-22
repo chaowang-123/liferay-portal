@@ -560,6 +560,7 @@ definition {
 			actionName = "Custom Action",
 			active = "true",
 			inputExpression = "",
+			NotRefresh = "true",
 			thenAction = "Webhook",
 			urlAction = "http://localhost:8080",
 			whenAction = "On After Add");
