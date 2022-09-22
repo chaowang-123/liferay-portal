@@ -1018,15 +1018,15 @@ definition {
 		}
 
 		if (isSet(click)) {
-			if ("${click}" == "cancel") {
+			if (("${click}" == "save") && ("${NotRefreshAttribute}" == "true")) {
+				Button.clickSave();
+			}
+			else if ("${click}" == "cancel") {
 				Button.clickCancel();
 
 				Refresh();
 			}
-			else if (("${click}" == "save") && ("${NotRefreshAttribute}" == "true")) {
-				Button.clickSave();
-			}
-			else ("${click}" == "save") {
+			else if ("${click}" == "save") {
 				Button.clickSave();
 
 				Refresh();
