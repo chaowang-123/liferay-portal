@@ -533,6 +533,8 @@ definition {
 	@description = "LPS-156319 - Verify that the Expression Builder field is required"
 	@priority = "3"
 	test CannotSaveWithoutExpressionBuilder {
+		property portal.acceptance = "chao.wang";
+
 		ObjectAdmin.addObjectViaAPI(
 			labelName = "Custom Object",
 			objectName = "CustomObject",
