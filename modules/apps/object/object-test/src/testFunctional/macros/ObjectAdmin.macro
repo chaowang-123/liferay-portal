@@ -81,6 +81,7 @@ definition {
 			inputExpression = "${inputExpression}",
 			inputMethod = "${inputMethod}",
 			inputValue = "${inputValue}",
+			notRefreshAttribute = "true",
 			objectLabel = "${objectLabel}",
 			secretAction = "${secretAction}",
 			thenAction = "${thenAction}",
