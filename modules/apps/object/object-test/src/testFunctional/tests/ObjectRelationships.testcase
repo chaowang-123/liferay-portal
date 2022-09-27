@@ -967,30 +967,30 @@ definition {
 	@priority = "3"
 	test CannotUpdateNameTypeObjectFromParentRelationship {
 		ObjectAdmin.addObjectViaAPI(
-			labelName = "Custom Object 290",
-			objectName = "CustomObject290",
-			pluralLabelName = "Custom Objects 290");
+			labelName = "Custom Object 153599",
+			objectName = "CustomObject153599",
+			pluralLabelName = "Custom Objects 153599");
 
 		ObjectAdmin.addObjectFieldViaAPI(
 			fieldBusinessType = "Text",
 			fieldLabelName = "Custom Field",
-			fieldName = "customObjectField",
+			fieldName = "customField",
 			fieldType = "String",
-			isRequired = "true",
-			objectName = "CustomObject290");
+			isRequired = "false",
+			objectName = "CustomObject153599");
 
 		ObjectAdmin.addObjectRelationshipViaAPI(
-			objectName_1 = "CustomObject290",
-			objectName_2 = "User",
+			objectName_1 = "CustomObject153599",
+			objectName_2 = "CustomObject153599",
 			relationshipLabel = "Relationship",
 			relationshipName = "relationship",
-			relationshipType = "manyToMany");
+			relationshipType = "ManyToMany");
 
-		ObjectAdmin.publishObjectViaAPI(objectName = "CustomObject290");
+		ObjectAdmin.publishObjectViaAPI(objectName = "CustomObject153599");
 
 		ObjectAdmin.openObjectAdmin();
 
-		ObjectPortlet.selectCustomObject(label = "Custom Object 290");
+		ObjectPortlet.selectCustomObject(label = "Custom Object 153599");
 
 		ObjectAdmin.gotoRelationshipsTab();
 
