@@ -71,8 +71,8 @@ definition {
 	macro _export {
 		SelectFrame(locator1 = "IFrame#CONFIGURATION_DIALOG");
 
-		if (isSet(contentDateRange)) {
-			ContentConfiguration.contentDateRange(contentDateRange = "${contentDateRange}");
+		if (isSet(contentLastRange)) {
+			Click(locator1 = "Radio#CHOOSE_CONTENT_LAST_CHANGE");
 		}
 
 		if (isSet(portletName)) {
@@ -501,7 +501,7 @@ definition {
 		AssertElementPresent(locator1 = "IFrame#MODAL_BODY");
 
 		LAR._export(
-			contentDateRange = "${contentDateRange}",
+			contentLastRange = "${contentLastRange}",
 			exportIndividualDeletions = "${exportIndividualDeletions}",
 			exportPermissions = "${exportPermissions}",
 			larFileName = "${larFileName}",
