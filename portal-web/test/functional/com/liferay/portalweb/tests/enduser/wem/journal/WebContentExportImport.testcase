@@ -107,6 +107,98 @@ definition {
 		}
 	}
 
+	@description = "This is a test for LPS-114230. Verify that updating web content not will add unnecessary UUID value to web content references."
+	@priority = "3"
+	test CanImportExportedImageGlobalStructuresBetweenInstances {
+		property test.name.skip.portal.instance = "WebContentExportImport#CanImportExportedImageGlobalStructuresBetweenInstances";
+
+		task ("Given: new web content with WC structure with an image field is exported") {
+			DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "global");
+
+			DMDocument.addCP(
+				dmDocumentDescription = "DM Document Description",
+				dmDocumentFile = "Document_1.png",
+				dmDocumentTitle = "Document Title");
+
+			WebContentNavigator.openWebContentAdmin(siteURLKey = "global");
+
+			NavItem.gotoStructures();
+
+			WebContentStructures.addCP(
+				structureDescription = "WC Structure Description",
+				structureName = "WC Structure Name");
+
+			DataEngine.addField(
+				fieldFieldLabel = "Image",
+				fieldName = "Image");
+
+			WebContentStructures.saveCP(structureName = "WC Structure Name");
+
+			WebContentNavigator.openWebContentAdmin(siteURLKey = "global");
+
+			NavItem.gotoTemplates();
+
+			WebContentTemplates.addCP(
+				structureName = "WC Structure Name",
+				templateDescription = "WC Template Description",
+				templateFieldNames = "Image",
+				templateName = "WC Template Name");
+
+			WebContentNavigator.openWebContentAdmin(siteURLKey = "global");
+
+			WebContentNavigator.gotoAddWithStructureCP(structureName = "WC Structure Name");
+
+			WebContent.addWithStructureCP(
+				imageFileName = "Document Title",
+				navTab = "Documents and Media",
+				structureName = "WC Structure Name",
+				webContentImage = "Document Title",
+				webContentTitle = "WC Title");
+
+			PortletEntry.publish();
+
+			WebContentNavigator.openWebContentAdmin(siteURLKey = "global");
+
+			LAR.exportPortlet(
+				contentDateRange = "Last",
+				exportContentAttribute = "true",
+				larFileName = "WebContent_portlet_structures.lar");
+		}
+
+		task ("When: The exported data is imported into a new virtual instance site") {
+			ApplicationsMenu.gotoPortlet(
+				category = "System",
+				panel = "Control Panel",
+				portlet = "Virtual Instances");
+
+			PortalInstances.addCP(
+				mailDomain = "www.able.com",
+				virtualHost = "www.able.com",
+				webId = "www.able.com");
+
+			User.firstLoginPG(
+				password = "test",
+				userEmailAddress = "test@www.able.com",
+				virtualHostsURL = "http://www.able.com:8080");
+
+			Navigator.openSpecificURL(url = "http://www.able.com:8080");
+
+			WebContentNavigator.openWebContentAdmin(siteURLKey = "global");
+
+			LAR.importPortlet(larFileName = "WebContent_portlet_structures.lar");
+		}
+
+		task ("Then: Assert that the imported web content shows the image") {
+			Navigator.openSpecificURL(url = "http://www.able.com:8080");
+
+			WebContentNavigator.openWebContentAdmin(siteURLKey = "global");
+
+			WebContent.viewWithStructureCP(
+				webContentImage = "DM Document Title",
+				webContentTitle = "WC Title");
+		}
+	}
+
 	@description = "This is a use case for LPS-155637. Verify that it's possible to import exported web content structures with fieldsets."
 	@priority = "3"
 	test CanImportExportedWCStructuresWithFieldsets {

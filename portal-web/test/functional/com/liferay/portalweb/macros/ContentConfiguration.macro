@@ -84,6 +84,9 @@ definition {
 		if (("${contentDateRange}" == "Last") && ("${browserType}" == "safari")) {
 			Click.javaScriptClick(locator1 = "StagingPublishToLive#CONTENT_LAST");
 		}
+		else if (("${contentDateRange}" == "Last") && ("${exportContentAttribute}" == "true")) {
+			Click(locator1 = "Radio#CHOOSE_CONTENT_LAST_CHANGE");
+		}
 		else if ("${contentDateRange}" == "Last") {
 			Click.clickNoMouseOverNoWaitForVisible(locator1 = "StagingPublishToLive#CONTENT_LAST");
 		}

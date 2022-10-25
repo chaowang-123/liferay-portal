@@ -71,6 +71,10 @@ definition {
 	macro _export {
 		SelectFrame(locator1 = "IFrame#CONFIGURATION_DIALOG");
 
+		if (isSet(contentDateRange)) {
+			ContentConfiguration.contentDateRange(contentDateRange = "${contentDateRange}");
+		}
+
 		if (isSet(portletName)) {
 			if (IsNotChecked(locator1 = "ExportImport#CONTENT")) {
 				Check(locator1 = "ExportImport#CONTENT");
@@ -497,6 +501,7 @@ definition {
 		AssertElementPresent(locator1 = "IFrame#MODAL_BODY");
 
 		LAR._export(
+			contentDateRange = "${contentDateRange}",
 			exportIndividualDeletions = "${exportIndividualDeletions}",
 			exportPermissions = "${exportPermissions}",
 			larFileName = "${larFileName}",
