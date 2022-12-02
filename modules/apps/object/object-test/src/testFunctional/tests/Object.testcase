@@ -171,7 +171,7 @@ definition {
 			ObjectAdmin.addObjectSingleFieldEntryViaAPI(
 				fieldName = "customObjectField",
 				objectName = "CustomObject158615",
-				value = "Apple Sauce");
+				value = "Carrot");
 
 			ObjectAdmin.addObjectSingleFieldEntryViaAPI(
 				fieldName = "customObjectField",
@@ -180,10 +180,10 @@ definition {
 		}
 
 		task ("Then the object's entries can be filtered") {
-			ObjectAdmin.filterObjectEntryViaAPI(
+			ObjectAdmin.sortObjectEntryViaAPI(
 				fieldName = "customObjectField",
 				objectName = "CustomObject158615",
-				value = "Apple");
+				sortvalue = "Food%3Desc");
 		}
 	}
 
