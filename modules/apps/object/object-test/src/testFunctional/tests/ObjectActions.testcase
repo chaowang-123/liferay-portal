@@ -188,6 +188,8 @@ definition {
 	@description = "LPS-171913 - Verify it's possible to add an object entry with the trigger On Payment Status Update"
 	@priority = "4"
 	test CanCreateActionAddObjectEntryWithOnPaymentStatusUpdate {
+		property portal.acceptance = "chao.wang";
+
 		task ("Given: An action in the Commerce Order object") {
 			ObjectAdmin.addObjectViaAPI(
 				labelName = "Custom Object 171913",
