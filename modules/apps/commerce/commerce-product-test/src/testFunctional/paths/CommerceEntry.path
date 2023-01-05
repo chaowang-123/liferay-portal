@@ -963,6 +963,16 @@
 	<td></td>
 </tr>
 <tr>
+	<td>ORDER_PAYMENT_STATUS_DROPDOWN</td>
+	<td>//label[contains(text(),'Payment Status')]/../select[contains(@class,'form-control')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ORDER_PAYMENT_STATUS_DROPDOWN_OPTION</td>
+	<td>//label[contains(text(),'Payment Status')]/../select[contains(@class,'form-control')]//option[contains(.,'${key_dropdownOption}')]</td>
+	<td></td>
+</tr>
+<tr>
 	<td>ORDER_PAYMENT_METHOD</td>
 	<td>//h4[contains(.,'Payment Method')]//..//div//span[contains(@class,'payment-name') and contains(.,'${paymentMethod}')]</td>
 	<td></td>
