@@ -185,6 +185,79 @@ definition {
 			actionName = "Action Name");
 	}
 
+	@description = "LPS-171913 - Verify it's possible to add an object entry with the trigger On Payment Status Update"
+	@priority = "4"
+	test CanCreateActionAddObjectEntryWithOnPaymentStatusUpdate {
+		task ("Given: An action in the Commerce Order object") {
+			ObjectAdmin.addObjectViaAPI(
+				labelName = "Custom Object 171913",
+				objectName = "CustomObject171913",
+				pluralLabelName = "Custom Object 171913");
+
+			ObjectAdmin.addObjectFieldViaAPI(
+				fieldBusinessType = "Text",
+				fieldLabelName = "Custom Field",
+				fieldName = "customObjectField",
+				fieldType = "String",
+				isRequired = "false",
+				objectName = "CustomObject171913");
+
+			ObjectAdmin.publishObjectViaAPI(objectName = "CustomObject171913");
+
+			ObjectAdmin.openObjectAdmin();
+
+			ObjectPortlet.selectCustomObject(label = "Commerce Order");
+
+			ObjectAdmin.goToActionsTab();
+		}
+
+		task ("When: The user selects the trigger OnPaymentStatusUpdate using the action Add Object Entry") {
+			ObjectAdmin.addObjectActionViaUI(
+				actionName = "Custom Action",
+				active = "true",
+				inputExpression = "customObjectField == 'Entry Test'",
+				inputMethod = "true",
+				inputValue = "Input as a value",
+				objectLabel = "Custom Object 171913",
+				thenAction = "Add an Object Entry",
+				whenAction = "On Order Status Update");
+		}
+
+		task ("And: The user changes the payment status") {
+			CommerceConfiguration.commerceSetUp(minium = "true");
+
+			JSONAccountEntry.addAccountEntry(
+				accountEntryName = "Commerce Account",
+				accountEntryType = "Business");
+
+			Navigator.openWithAppendToBaseURL(urlAppend = "web/minium/catalog");
+
+			FrontStore.addInitializerProductToCart(
+				productName = "U-Joint",
+				productQuantity = "1");
+
+			CommerceCheckout.gotoCheckoutViaMiniCart();
+
+			CommerceOrders.openOrdersAdmin();
+
+			CommerceNavigator.gotoOrderEntryViaAdmin(status = "Open");
+
+			CommerceEntry.gotoMenuTab(menuTab = "Payments");
+
+			AssertElementPresent(
+				locator1 = "CommerceEntry#ORDER_PAYMENT_STATUS",
+				paymentStatus = "Pending");
+			
+			CommerceOrders.editPaymentStatus(dropdownOption = "Completed");
+		}
+
+		task ("Then: The action is triggered") {
+			ObjectAdmin.goToCustomObject(objectName = "CustomObject171913");
+
+			ObjectPortlet.viewEntry(entry = "Input as a value");
+		}
+	}
+
 	@description = "LPS-156312 - Assert an Action can be created with Expression Builder."
 	@priority = "4"
 	test CanCreateActionWithExpressionBuilder {
