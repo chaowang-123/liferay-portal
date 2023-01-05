@@ -539,6 +539,24 @@ definition {
 		IFrame.selectTopFrame();
 	}
 
+	macro editPaymentStatus {
+		Click(
+			key_titleName = "Payment Status",
+			locator1 = "CommerceOrders#ORDER_DETAILS_EDIT_BUTTON");
+
+		SelectFrame.selectFrameNoLoading(locator1 = "IFrame#MODAL_BODY");
+
+		Click(locator1 = "CommerceEntry#ORDER_PAYMENT_STATUS_DROPDOWN");
+
+		Click.clickNoMouseOver(
+			key_dropdownOption = "${dropdownOption}",
+			locator1 = "CommerceEntry#ORDER_PAYMENT_STATUS_DROPDOWN_OPTION");
+
+		Click(locator1 = "Button#MODAL_IFRAME_FOOTER_SUBMIT");
+
+		IFrame.selectTopFrame();
+	}
+
 	macro importFromOrder {
 		Click(locator1 = "CommerceEntry#DROPDOWN");
 
