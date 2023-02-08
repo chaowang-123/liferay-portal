@@ -165,7 +165,7 @@ definition {
 	test SidebarReturnsToTreeViewAfterClearingSearchResults {
 		KBAdmin.openKBAdmin(siteURLKey = "guest");
 
-		KBArticle.searchForKB(KnowledgeBaseName = "foo");
+		KBArticle.searchForKB(knowledgeBaseName = "foo");
 
 		AssertTextEquals(
 			locator1 = "Message#EMPTY_STATE_INFO",

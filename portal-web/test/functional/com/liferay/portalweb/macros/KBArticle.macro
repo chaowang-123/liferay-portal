@@ -861,13 +861,13 @@ definition {
 	}
 
 	macro searchForKB {
-		var key_KnowledgeBaseName = "${KnowledgeBaseName}";
+		var key_knowledgeBaseName = "${knowledgeBaseName}";
 
 		Click(locator1 = "KnowledgeBase#SEARCH_FIELD");
 
 		Type(
 			locator1 = "KnowledgeBase#SEARCH_FIELD",
-			value1 = "${KnowledgeBaseName}");
+			value1 = "${knowledgeBaseName}");
 
 		KeyPress(
 			locator1 = "TextInput#SEARCH",
