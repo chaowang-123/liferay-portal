@@ -351,6 +351,7 @@
 </tr>
 
 <!--SIDE_BAR-->
+
 <tr>
 	<td>HOME_FOLDER</td>
 	<td>//div[contains(@class,'autofit-col-expand')]</td>

@@ -1,6 +1,7 @@
 @component-name = "portal-knowledge-base"
 definition {
 
+	property custom.properties = "feature.flag.LPS-156421=true";
 	property portal.release = "true";
 	property portal.upstream = "true";
 	property testray.main.component.name = "Knowledge Base";
@@ -157,6 +158,22 @@ definition {
 			searchAssetSummary = "Knowledge Base Article",
 			searchAssetTitle = "Knowledge Base Article",
 			searchAssetType = "Knowledge Base Article");
+	}
+
+	@description = "This test ensures that no results are shown after the user clears the search query by clicking the X in the search field."
+	@priority = "4"
+	test SidebarReturnsToTreeViewAfterClearingSearchResults {
+		KBAdmin.openKBAdmin(siteURLKey = "guest");
+
+		KBArticle.searchForKB(KnowledgeBaseName = "foo");
+
+		AssertTextEquals(
+			locator1 = "Message#EMPTY_STATE_INFO",
+			value1 = "No Results Found");
+
+		Click(locator1 = "Button#CLEAR");
+
+		AssertElementPresent(locator1 = "KnowledgeBase#HOME_FOLDER");
 	}
 
 }
