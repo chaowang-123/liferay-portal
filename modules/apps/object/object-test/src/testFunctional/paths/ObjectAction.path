@@ -43,6 +43,11 @@
 		<td></td>
 	</tr>
 	<tr>
+		<td>INPUT_NEW_VALUE_INDEX</td>
+		<td>xpath=(//input[(@placeholder="Input a value or create an expression.")])[${index}]</td>
+		<td></td>
+	</tr>
+	<tr>
 		<td>INPUT_METHOD</td>
 		<td>//input[contains(@class, 'custom-control-input') and contains(@type,'checkbox')]/..//span[contains(text(),'Input as a value.')]</td>
 		<td></td>
