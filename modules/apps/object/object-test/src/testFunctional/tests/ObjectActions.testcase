@@ -106,6 +106,64 @@ definition {
 		}
 	}
 
+	@description = "LPS-173537 - Verify updating an Account entry triggers an action to add a user"
+	@priority = 5
+	test CanAddUserAfterUpdatingAccountEntry {
+		property portal.acceptance = "true";
+
+		task ("Given an Account") {
+			JSONAccountEntry.addAccountEntry(
+				accountEntryName = "Accounts Name",
+				accountEntryType = "Business");
+		}
+
+		task ("And given an action to add a user after updating an Account entry in the Account object") {
+			ObjectAdmin.openObjectAdmin();
+
+			ObjectPortlet.selectSystemObject(label = "Account");
+
+			ObjectAdmin.goToActionsTab();
+
+			ObjectAdmin.addObjectActionViaUI(
+				actionLabel = "Custom Action",
+				active = "true",
+				index = "2",
+				inputExpressionIndexValue = "Business",
+				inputExpressionValue = "Account",
+				inputMethod = "false",
+				objectLabel = "Account",
+				thenAction = "Add an Object Entry",
+				whenAction = "On After Update");
+		}
+
+		task ("When the user updates an Account entry") {
+			Account.openAccountsAdmin();
+
+			Account.editCP(
+				accountName = "Accounts Name",
+				accountNameEdit = "Accounts Name Edited");
+		}
+
+		task ("Then the action is triggered and a user is added") {
+			ObjectAdmin.openObjectAdmin();
+
+			ObjectPortlet.selectSystemObject(label = "Account");
+
+			ObjectAdmin.goToActionsTab();
+
+			ObjectAdmin.assertObjectActions(
+				actionActive = "Yes",
+				actionLabel = "Custom Action",
+				status = "Success");
+
+			Account.openAccountsAdmin();
+
+			Account.viewAccountDetails(
+				accountName = "Accounts Name Edited",
+				accountType = "Business");
+		}
+	}
+
 	@description = "LPS-139008 - Verify it is possible to cancel the creation of an Action"
 	@priority = 4
 	test CanCancelAction {
