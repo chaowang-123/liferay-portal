@@ -66,7 +66,10 @@ definition {
 			click = "save",
 			errorMessage = ${errorMessage},
 			fieldName = ${fieldName},
+			index = ${index},
 			inputExpression = ${inputExpression},
+			inputExpressionIndexValue = ${inputExpressionIndexValue},
+			inputExpressionValue = ${inputExpressionValue},
 			inputMethod = ${inputMethod},
 			inputValue = ${inputValue},
 			notificationName = ${notificationName},
@@ -1052,6 +1055,12 @@ definition {
 					Type(
 						locator1 = "ObjectAction#INPUT_NEW_VALUE",
 						value1 = ${inputExpressionValue});
+					
+					if (isSet(index)) {
+						Type(
+							locator1 = "ObjectAction#INPUT_NEW_VALUE_INDEX",
+							value1 = ${inputExpressionIndexValue});
+					}
 				}
 
 				if (IsElementPresent(locator1 = "TextInput#ANY")) {
