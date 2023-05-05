@@ -3477,7 +3477,7 @@ definition {
 				userEmailAddress = "userea@liferay.com");
 		}
 
-		task ("Then: the user can manually trigger the standalone action in the drop-down list") {
+		task ("Then: the user can manually trigger the standalone action in the drop-down lists") {
 			User.logoutAndLoginPG(
 				userLoginEmailAddress = "userea@liferay.com",
 				userLoginFullName = "userfn userln");
