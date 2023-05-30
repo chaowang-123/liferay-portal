@@ -47,7 +47,7 @@ definition {
 	}
 
 	@description = "This is a use case for LPS-159334. TC-1: Verify LOGIN_FAILURE message returns when User tries to login with a valid email address but an invalid password."
-	@priority = 5
+	@priority = 4
 	test AssertAuditLogIsPresentWhenLoginWithInvalidPassword {
 		property test.name.skip.portal.instance = "Audit#AssertAuditLogIsPresentWhenLoginWithInvalidPassword";
 
