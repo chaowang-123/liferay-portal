@@ -46,6 +46,68 @@ definition {
 		}
 	}
 
+	@description = "This is a use case for LPS-159334. TC-1: Verify LOGIN_FAILURE message returns when User tries to login with a valid email address but an invalid password."
+	@priority = 5
+	test AssertAuditLogIsPresentWhenLoginWithInvalidPassword {
+		property test.name.skip.portal.instance = "Audit#AssertAuditLogIsPresentWhenLoginWithInvalidPassword";
+
+		task ("Given: Enable Logging Message Audit and log context") {
+			Audit.gotoSystemSettings(portlet = "Logging Message Audit");
+
+			Click(locator1 = "Audit#AUDIT_LOG_CONTEXT_ENABLED_BUTTON");
+
+			PortletEntry.save();
+
+			Audit.gotoSystemSettings(portlet = "Audit Log Context");
+
+			Click(locator1 = "Audit#AUDIT_LOG_CONTEXT_ENABLED_BUTTON");
+
+			PortletEntry.save();
+		}
+
+		task ("When: Login portal with a valid email address but an invalid password") {
+			User.logoutPG();
+
+			Navigator.gotoLoginPage();
+
+			Type.typePause(
+				locator1 = "TextInput#EMAIL_ADDRESS",
+				value1 = "test@liferay.com");
+
+			Type.typePause(
+				locator1 = "TextInput#PASSWORD",
+				value1 = "test1");
+
+			Click(locator1 = "Button#SIGN_IN");
+
+			AssertTextEquals.assertPartialText(
+				locator1 = "Message#ERROR_DISMISSIBLE",
+				value1 = "Authentication failed. Please try again.");
+		}
+
+		task ("Then: Assert that the audit log is present") {
+			User.loginPG(
+				password = "test",
+				userEmailAddress = "test@liferay.com");
+
+			ApplicationsMenu.gotoPortlet(
+				category = "Security",
+				panel = "Control Panel",
+				portlet = "Audit");
+
+			var browserIPAddress = PropsUtil.get("browser.ip.address");
+
+			Audit.viewAuditDetails(
+				additionalInformation = "Failed to authenticate by email address",
+				clientIp = ${browserIPAddress},
+				key_resourceAction = "LOGIN_FAILURE",
+				key_resourceName = "User",
+				resourceAction = "LOGIN_FAILURE",
+				resourceName = "User",
+				userName = "Test Test");
+		}
+	}
+
 	@description = "This is a use case for LPS-155728. TC-1: Assert the email address is present in the audit log context in a human-readable format."
 	@priority = 2
 	test AssertEmailAddressIsPresentInReadable {
